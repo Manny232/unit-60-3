@@ -1,0 +1,66 @@
+local AskTextField = display.newText( "Put in your age bellow.", display.contentCenterX + 1 , display.contentCenterY - 1, native.systemFont, 15)
+AskTextField.id = "AskTextField"
+AskTextField:setFillColor( 255, 255, 255 )
+
+local weekTextField = display.newText( "Day of the week.", display.contentCenterX + 1 , display.contentCenterY -220, native.systemFont, 15)
+weekTextField.id = "weekTextField"
+weekTextField:setFillColor( 255, 255, 255 )
+
+local dowTextField = native.newTextField( display.contentCenterX + 1, display.contentCenterY - 160, 300, 75 )
+dowTextField.id = "dowTextField"
+
+local AgeTextField = native.newTextField( display.contentCenterX + 1, display.contentCenterY + 80, 300, 75 )
+AgeTextField.id = "AgeTextField"
+
+
+
+local calculateButton = display.newImageRect( "button.png", 200, 125 )
+calculateButton.x = display.contentCenterX
+calculateButton.y = display.contentCenterY -50
+calculateButton.id = "calculateButton"
+
+
+local displayTextField = display.newText( "age", display.contentCenterX + 1 , display.contentCenterY +200, native.systemFont, 12 )
+displayTextField.id = "displayTextField"
+displayTextField:setFillColor( 255, 255, 255 )
+
+
+local dayTextField = display.newText( "is it a weekend", display.contentCenterX + 1 , display.contentCenterY +240, native.systemFont, 12 )
+dayTextField.id = "dayTextField"
+dayTextField:setFillColor( 255, 255, 255 )
+
+local function calculateButtonTouch( event )
+
+	
+	local Age = tonumber(AgeTextField.text)
+    local dow = dowTextField.text
+  
+	
+	if Age >= 18 then
+		displayTextField.text = "R Rated Movie"
+	elseif Age>= 13 then
+		displayTextField.text = "PG-13 Movie"
+
+	elseif Age>= 6 then
+		displayTextField.text = "Anymovie"
+
+	elseif Age>= 3 then
+		displayTextField.text = "You cant Watch movies"
+	end 
+
+
+	 if dow == "sunday" then
+			dayTextField.text = "its the weekend full price"
+
+	 elseif dow == "saturday" then 
+	 		dayTextField.text = "its the weekend full price"
+
+	 elseif dow == "Thursday" then 
+			dayTextField.text = "halfprice student discount"
+
+end
+    return true
+
+end
+
+calculateButton:addEventListener( "touch", calculateButtonTouch )
